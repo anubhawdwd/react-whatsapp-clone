@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
-import { formatRelative } from "date-fns/esm";   // yarn add date-fns
-import { useGlobalAuthContext } from "../Context";
+import { formatRelative } from "date-fns/esm"; // yarn add date-fns
+import { useGlobalAuthContext } from "../ContextHook/Context";
 
 const Message = ({ message }) => {
   const ref = useRef();

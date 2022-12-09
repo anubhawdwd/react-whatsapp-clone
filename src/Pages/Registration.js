@@ -4,11 +4,9 @@ import { auth, storage, db } from "../Firebase";
 import add from "../img/add.png";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { doc, setDoc } from "firebase/firestore";
-// import { useGlobalAuthContext } from "../Context";
 import { Link, useNavigate } from "react-router-dom";
 
 const Registration = () => {
-  // const {setCurrentUser} = useGlobalAuthContext();
   const navigate = useNavigate();
   const [err, setErr] = useState(false);
   const handleSubmit = async (e) => {
@@ -17,7 +15,6 @@ const Registration = () => {
     const email = e.target[1].value;
     const password = e.target[2].value;
     const file = e.target[3]?.files[0];
-    // console.log(displayName, email, password, file);
     try {
       //create User
       const res = await createUserWithEmailAndPassword(auth, email, password);
@@ -25,7 +22,7 @@ const Registration = () => {
       const uploadTask = uploadBytesResumable(storageRef, file);
       uploadTask.on(
         (error) => {
-          // console.log(error);
+          console.log(error);
         },
         () => {
           // Handle successful uploads on complete
@@ -37,7 +34,7 @@ const Registration = () => {
 
             await setDoc(doc(db, "users", res.user.uid), {
               uid: res.user.uid,
-              displayName,
+              displayName: displayName.toLowerCase(),
               email,
               photoURL: downloadURL,
             });

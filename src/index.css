@@ -1,9 +1,22 @@
 body {
   margin: 0;
   padding: 0;
+  background-color: #095a51f6;
 }
 
+/* scroll bar customization */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
 /* Login Btn */
+.LoginError{
+  color: rgb(129, 15, 15);
+  border-color: red;
+}
 .displayForm {
   background-color: #1b1c1d;
   height: 100vh;
@@ -14,12 +27,12 @@ body {
 }
 .loginBtn {
   background-color: rgb(117, 170, 139);
-  height: 60vh;
+  height: 70vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 35vw;
+  width: 36vw;
   color: #023832f6;
   border-radius: 6px;
   box-shadow: 4px 4px #173633f6;
@@ -33,16 +46,19 @@ body {
   justify-content: center;
   align-items: center;
 }
-.InputForm input {
+.InputForm-input {
   margin: 10px;
   height: 4vh;
   width: 25vw;
   border-color: white;
   border-radius: 8px;
 }
+.LoginInputError{
+  background-color: rgb(224, 114, 114);
+}
 .SignIn {
   margin: 10px;
-  background-color: rgb(15, 121, 107);
+  background-color: rgb(6, 136, 119);
   height: 4vh;
   width: 13vw;
   border-radius: 12px;
@@ -73,41 +89,30 @@ body {
 /* Home page */
 .app_box {
   display: flex;
-  background-color: #41012e;
-  /* flex-wrap: wrap; */
+  flex-direction: column;
+  background-color: #095a51f6;
+  flex-wrap: wrap;
   justify-content: space-between;
   height: 100vh;
   width: 100vw;
 }
 .sidebar {
-  /* background-color: #03a2c2; */
-  /* flex: 0.3; */
   border-right: 0.01rem solid rgba(255, 251, 251, 0.767);
-  /* min-height: 100vh; */
-  /* min-width: 60vw; */
+  min-width: 30vw;
   background-color: #000000;
 }
-.chats {
-  flex: 1;
-  width: 100vw;
-  min-width: 35vw;
-}
+
 .headNav {
   background-color: #20363f;
   color: rgb(210, 183, 235);
   height: 12vh;
   display: flex;
   align-items: center;
-  /* align-self: center; */
   justify-content: space-between;
   border-right: 2px solid rgb(40, 62, 75);
-  /* border-right-color: #9fa0a1; */
 }
 .user_Img {
   height: 7vh;
-  width: 3vw;
-
-  min-width: 6vh;
   border-radius: 50%;
   margin: 10px 10px 0 10px;
 }
@@ -117,9 +122,8 @@ body {
 }
 .user_form {
   background-color: #2e3c42;
-  width: 75vw;
+  width: 40vw;
   height: 5vh;
-  /* min-height: 3vh; */
   border-radius: 6px;
   margin: 0 20px;
   display: flex;
@@ -127,41 +131,47 @@ body {
   align-content: center;
 }
 .search {
-  padding-top: 5px;
-  padding-left: 5px;
+  padding: 5px 0 0 5px;
   color: white;
   font-size: large;
 }
 .user_Search {
   background-color: #2e3c42;
-  width: 40vw;
+  width: 20vw;
   height: 3vh;
   padding: 2px;
   margin: 0.25rem 1.5rem 0.25rem 0;
   border: none;
 }
-.user_form:focus{
+.user_form:focus {
   height: 5vh;
 }
 .user_Search:focus {
   outline: none;
-  height:4vh;
-  margin:0;
+  height: 4vh;
+  margin: 0;
 }
 /* users result after successful search */
 .searchedUser {
   display: flex;
   column-gap: 20px;
   height: 12vh;
+  width: 100%;
   overflow: hidden;
   cursor: pointer;
-  background-color: #095a51f6;
+  background-color: #030303f6;
 }
 .searchedUserDetails {
   margin-top: 12px;
-  width: 100%;
   color: rgb(206, 206, 206);
   text-transform: capitalize;
+  
+}
+.searchedUserErr{
+  justify-content: center;
+  align-content: center;
+  margin-left: 2rem;
+  color: rgb(240, 196, 0);
 }
 /* user listing in sidebars */
 .users {
@@ -201,9 +211,7 @@ p {
   display: flex;
   column-gap: 20px;
   height: 12vh;
-  /* overflow: hidden; */
   cursor: default;
-
 }
 .chat_userDetails {
   margin-top: 12px;
@@ -222,14 +230,6 @@ p {
   display: flex;
   flex-direction: column;
   overflow-y: scroll;
-}
-/* scroll bar customization */
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background-color: transparent;
 }
 
 /* message section continue */
@@ -257,7 +257,7 @@ p {
   margin-left: auto;
 }
 
-#msgImg{
+#msgImg {
   height: 40vh;
   max-width: 99vw;
 }
@@ -281,7 +281,7 @@ p {
   border: none;
   border-radius: 6px;
   height: 4vh;
-  width: 40vw;
+  width: 35vw;
 }
 .text_Input:focus {
   outline: none;
@@ -302,12 +302,21 @@ h3 {
   background-color: #000000;
   height: 100vh;
 }
-body {
-  background-color: #000000;
+
+.no_user_selected {
+  color: white;
+  margin: 2rem;
+  display: grid;
+  place-content: center;
+  margin-top: 40vh;
+  width: 50vw;
 }
-@media (max-width: 786px) {
+
+/* Responsivenesssssssss */
+@media (max-width: 700px) {
+  /* login/registration form  */
   .loginBtn {
-    height: 60vh;
+    height: 65vh;
     width: 55vw;
   }
   .InputForm input {
@@ -321,18 +330,20 @@ body {
     width: 20vw;
     height: 5vh;
   }
-  .sideBar {
-    display: flex;
-    justify-content: center;
-    background-color: #41012e;
-    height: 100vh;
+  /* message typing area */
+  .text_Input{  
+    width:30vw;
   }
-  .SideBar_inside {
-    width: 100vw;
-    height: 100vh;
+ 
+}
+
+@media (max-width: 503px) {
+  Sidebar Search Form
+  .user_form {
+    width: 75vw;
   }
-  .chats {
-    display: block;
-    float: left;
+  .user_Search {
+    width: 20vw;
   }
+  
 }

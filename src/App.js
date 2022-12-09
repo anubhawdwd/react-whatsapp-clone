@@ -7,20 +7,18 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
-import { useGlobalAuthContext } from "./Context";
+import { useGlobalAuthContext } from "./ContextHook/Context";
 import Registration from "./Pages/Registration";
 
 function App() {
   const { currentUser } = useGlobalAuthContext();
-  // console.log("user from app.js",currentUser);
     const ProtectedRoute = ({ children }) => {
       if (!currentUser) {
         return <Navigate to="/login" />;
       }
       return children;
     };
-  
-
+    
   return (
     <Router>
       <Routes>

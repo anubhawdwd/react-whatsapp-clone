@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { doc, onSnapshot } from "firebase/firestore";
 import { db } from "../Firebase";
-import { useGlobalAuthContext } from "../Context";
-import { useGlobalChatContext } from "../ChatContext";
+import { useGlobalAuthContext } from "../ContextHook/Context";
+import { useGlobalChatContext } from "../ContextHook/ChatContext";
 
 const SideBarUser = () => {
   const [chats, setChats] = useState([]);
@@ -12,8 +12,6 @@ const SideBarUser = () => {
   useEffect(() => {
     const getChats = () => {
       const unsub = onSnapshot(doc(db, "userChats", currentUser.uid), (doc) => {
-        //userChats*******************************
-        // setChats(Object.entries(doc.data()));
         setChats(doc.data());
       });
 
@@ -25,24 +23,22 @@ const SideBarUser = () => {
   }, [currentUser.uid]);
 
   const handleUserChat = (userInfo) => {
-    // console.log('handleuserchat');
-    // console.log('user info', userInfo);
     dispatch({ type: "CHANGE_USER", payload: userInfo });
-    setIsSideBar( false);
+    setIsSideBar(false);
   };
-  // console.log((chats));
   return (
     <>
       {Object.entries(chats)
         ?.sort((a, b) => b[1].date - a[1].date)
         .map((item) => {
-          // console.log('Items of sidebar',item);
-          // console.log("sidebar user", item[1].lastMessage);
           return (
             <div
               className="users"
               key={item[0]}
-              onClick={() => handleUserChat(item[1].userInfo)}
+              onClick={() => {
+                handleUserChat(item[1].userInfo);
+                setIsSideBar(false)
+              }}
             >
               <img
                 className="user_Img"
